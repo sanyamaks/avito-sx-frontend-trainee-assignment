@@ -1,29 +1,23 @@
 import React from 'react';
-import { Header, Icon, Segment, Grid, Button } from 'semantic-ui-react';
+import './Header.css';
+import { ReactComponent as IconBack } from '../../assets/icons/arrow-pointing-to-right.svg';
+import { ReactComponent as IconLoader } from '../../assets/icons/update-arrows.svg';
 
-const HeaderExampleSettingsIcon = () => (
-  <Grid>
-    <Grid.Row>
-      <Grid.Column width={2}>
-        <Button icon>
-          <Icon name="arrow left" size="large" />
-        </Button>
-      </Grid.Column>
-      <Grid.Column width={12}>
-        <Header as="h2" icon textAlign="center">
-          <Header.Content>
-            Account Settings
-            <Header.Subheader>Manage your preferences</Header.Subheader>
-          </Header.Content>
-        </Header>
-      </Grid.Column>
-      <Grid.Column width={2}>
-        <Button icon>
-          <Icon name="refresh" size="large" loading />
-        </Button>
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
-);
+const Header = () => {
+  return (
+    <header className="header">
+      <button className="header__button-icon">
+        <IconBack className="header__icon header__icon_back" />
+      </button>
+      <div className="header__text">
+        <h1 className="header__title">Hacker News</h1>
+        <p className="header__subtitle">The news we deserve</p>
+      </div>
+      <button className="header__button-icon">
+        <IconLoader className="header__icon header__icon_loader" />
+      </button>
+    </header>
+  );
+};
 
-export default HeaderExampleSettingsIcon;
+export default Header;
