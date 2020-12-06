@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import NewsItem from '../NewsItem/NewsItem';
-import { getAllNewsId } from '../../api/NewsAPI';
 import { connect } from 'react-redux';
 import { requestNews } from '../../actions/index';
 
 const News = (props) => {
-  console.log(props);
-  const { news, dispatch } = props;
+  const { news, showNews } = props;
 
   useEffect(() => {
-    dispatch(requestNews());
+    showNews();
   }, []);
   return (
     <div className="articles">
@@ -24,4 +22,12 @@ const mapStateToProps = (state) => {
   return { news: state.news };
 };
 
-export default connect(mapStateToProps)(React.memo(News));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showNews: () => {
+      dispatch(requestNews());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(News);

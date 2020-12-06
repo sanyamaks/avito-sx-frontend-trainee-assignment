@@ -1,6 +1,6 @@
-import { ADD_NEWS, TOGGLE_LOADER } from '../actions/index';
+import { ADD_NEWS, SET_LOADING } from '../actions/index';
 const initialState = {
-  isLoader: false,
+  isLoading: false,
   news: [],
 };
 
@@ -11,10 +11,10 @@ export const newsReducer = (state = initialState, action) => {
         ...state,
         news: [...action.payload],
       };
-    case TOGGLE_LOADER:
+    case SET_LOADING:
       return {
         ...state,
-        isLoader: action.payload,
+        isLoading: action.payload,
       };
     default:
       return state;

@@ -8,15 +8,15 @@ export const addNews = (news) => ({
 
 export const requestNews = () => {
   return (dispatch) => {
-    dispatch(toggleLoader(true));
+    dispatch(setLoading(true));
     getAllNewsId()
       .then((news) => dispatch(addNews(news)))
-      .finally(() => dispatch(toggleLoader(false)));
+      .finally(() => dispatch(setLoading(false)));
   };
 };
 
-export const TOGGLE_LOADER = 'TOGGLE_LOADER';
-export const toggleLoader = (isLoader) => ({
-  type: TOGGLE_LOADER,
-  payload: isLoader,
+export const SET_LOADING = 'SET_LOADING';
+export const setLoading = (isLoading) => ({
+  type: SET_LOADING,
+  payload: isLoading,
 });

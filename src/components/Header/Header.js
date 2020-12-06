@@ -7,7 +7,7 @@ import cn from 'classnames';
 import { requestNews } from '../../actions';
 
 const Header = (props) => {
-  const { isLoader, onClick } = props;
+  const { isLoading, showNews } = props;
 
   return (
     <header className="header">
@@ -18,9 +18,9 @@ const Header = (props) => {
         <h1 className="header__title">Hacker News</h1>
         <p className="header__subtitle">The news we deserve</p>
       </div>
-      <button className="header__button-icon" onClick={onClick}>
+      <button className="header__button-icon" onClick={showNews}>
         <IconLoader
-          className={cn('header__icon', { header__icon_loader: isLoader })}
+          className={cn('header__icon', { header__icon_loader: isLoading })}
         />
       </button>
     </header>
@@ -28,15 +28,15 @@ const Header = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { isLoader: state.isLoader };
+  return { isLoading: state.isLoading };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: () => {
+    showNews: () => {
       dispatch(requestNews());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Header));
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
