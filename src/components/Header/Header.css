@@ -13,6 +13,7 @@
 }
 
 .header {
+  height: 53px;
   display: grid;
   grid-template-columns: 50px auto 50px;
   align-items: center;
@@ -40,12 +41,20 @@
 }
 
 .header__text {
+  margin: 0 0 0 20px;
 }
 
 .header__title {
   margin: 0;
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 800;
 }
 
 .header__subtitle {
   margin: 0;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 400;
+  color: rgb(91, 112, 131);
 }

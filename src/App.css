@@ -3,5 +3,6 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: 1024px;
-  border: 1px solid #cccdcb;
+  border-right: 1px solid #cccdcb;
+  border-left: 1px solid #cccdcb;
 }
