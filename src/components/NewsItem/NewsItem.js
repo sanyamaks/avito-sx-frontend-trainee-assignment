@@ -1,20 +1,22 @@
 import React from 'react';
+import cn from 'classnames';
+import { ReactComponent as IconStar } from '../../assets/icons/star.svg';
+import './NewsItem.css';
 
 const NewsItem = (props) => {
-  const { newsItem } = props;
+  const { newsItem, className } = props;
   return (
-    <div
-      className="article"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '200px 200px 200px 200px',
-      }}
-    >
-      <p style={{ marginRight: '10px' }}>{newsItem.by}</p>{' '}
-      <p style={{ marginRight: '10px' }}>{newsItem.title}</p>{' '}
-      <p style={{ marginRight: '10px' }}>{newsItem.time}</p>{' '}
-      <p>{newsItem.score}</p>
-    </div>
+    <article className={cn('news-item', className)}>
+      <p className="news-item__author">{newsItem.by}</p>
+      <div className="news-item__wrapper">
+        <p className="news-item__title">{newsItem.title}</p>
+        <p className="news-item__time">{newsItem.time}</p>
+      </div>
+      <div className="news-item__score">
+        <IconStar className="news-item__score-icon" />
+        <p className="news-item__score-count">{newsItem.score}</p>
+      </div>
+    </article>
   );
 };
 

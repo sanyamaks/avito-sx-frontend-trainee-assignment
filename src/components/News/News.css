@@ -1,0 +1,7 @@
+.news__news-item {
+  margin: 10px 0 0 0;
+}
+
+.news__news-item:first-child {
+  margin: 0;
+}
