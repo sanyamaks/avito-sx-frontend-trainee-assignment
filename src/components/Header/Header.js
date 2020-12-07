@@ -4,7 +4,7 @@ import { ReactComponent as IconBack } from '../../assets/icons/arrow-pointing-to
 import { ReactComponent as IconLoader } from '../../assets/icons/update-arrows.svg';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import { requestNews } from '../../actions';
+import { requestNews } from '../../store/actions';
 
 const Header = (props) => {
   const { isLoading, showNews } = props;

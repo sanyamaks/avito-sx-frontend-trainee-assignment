@@ -1,4 +1,4 @@
-import { ADD_NEWS, SET_LOADING } from '../actions/index';
+import { ADD_NEWS, SET_LOADING } from '../actions';
 const initialState = {
   isLoading: false,
   news: [],

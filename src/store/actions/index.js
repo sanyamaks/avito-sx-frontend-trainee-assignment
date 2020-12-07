@@ -1,4 +1,4 @@
-import { getAllNewsId } from '../api/NewsAPI';
+import { getAllNewsId } from '../../api/NewsAPI';
 
 export const ADD_NEWS = 'ADD_NEWS';
 export const addNews = (news) => ({
