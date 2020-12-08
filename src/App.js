@@ -1,15 +1,24 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import News from './components/News/News';
-import Background from "./components/Background/Background";
+import Background from './components/Background/Background';
+import ActiveNews from './components/ActiveNews/ActiveNews';
 
 const App = () => {
   return (
     <div className="App">
       <Header />
-      <Background />
-      <News />
+      <Switch>
+        <Route path="/active-news">
+          <ActiveNews />
+        </Route>
+        <Route path="/">
+          <Background />
+          <News />
+        </Route>
+      </Switch>
     </div>
   );
 };
