@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import NewsItem from '../NewsItem/NewsItem';
 import { connect } from 'react-redux';
 import { requestNews } from '../../store/actions/index';
 import './News.css';
+import NewsItem from '../NewsItem/NewsItem';
 
 const News = (props) => {
   const { news, showNews } = props;

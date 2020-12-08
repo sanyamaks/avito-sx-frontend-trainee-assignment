@@ -1,17 +1,24 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './Header.css';
 import { ReactComponent as IconBack } from '../../assets/icons/arrow-pointing-to-right.svg';
 import { ReactComponent as IconLoader } from '../../assets/icons/update-arrows.svg';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import { requestNews } from '../../store/actions';
+import { requestNews, resetActiveNews } from '../../store/actions';
 
 const Header = (props) => {
-  const { isLoading, showNews } = props;
+  const { isLoading, showNews, comeBack } = props;
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/');
+    comeBack();
+  };
 
   return (
     <header className="header">
-      <button className="header__button-icon">
+      <button className="header__button-icon" onClick={handleClick}>
         <IconBack className="header__icon header__icon_back" />
       </button>
       <div className="header__text">
@@ -35,6 +42,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showNews: () => {
       dispatch(requestNews());
+    },
+    comeBack: () => {
+      dispatch(resetActiveNews());
     },
   };
 };
