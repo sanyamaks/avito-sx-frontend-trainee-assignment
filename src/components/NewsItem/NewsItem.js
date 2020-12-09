@@ -1,19 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setActiveNews } from '../../store/actions/index';
 import cn from 'classnames';
 import './NewsItem.css';
 import { ReactComponent as IconStar } from '../../assets/icons/star.svg';
 
 const NewsItem = (props) => {
-  const { newsItem, className, openActiveNews } = props;
+  const { newsItem, className } = props;
 
   const history = useHistory();
 
   const handleClick = () => {
     history.push(`/news/${newsItem.id}`);
-    openActiveNews(newsItem);
   };
 
   return (
@@ -31,14 +28,4 @@ const NewsItem = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    openActiveNews: (news) => {
-      dispatch(setActiveNews(news));
-    },
-  };
-};
-
-export default connect(() => {
-  return {};
-}, mapDispatchToProps)(NewsItem);
+export default React.memo(NewsItem);
