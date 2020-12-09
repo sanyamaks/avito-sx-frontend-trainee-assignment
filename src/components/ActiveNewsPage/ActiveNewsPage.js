@@ -6,6 +6,7 @@ const ActiveNewsPage = (props) => {
   return (
     <>
       <ActiveNews {...props} />
+      <Comments />
     </>
   );
 };
