@@ -2,19 +2,17 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
-import News from './components/News/News';
-import Background from './components/Background/Background';
-import ActiveNews from './components/ActiveNews/ActiveNews';
+import MainPage from "./components/MainPage/MainPage";
+import ActiveNewsPage from "./components/ActiveNewsPage/ActiveNewsPage";
 
 const App = () => {
   return (
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/news/:id" component={ActiveNews} />
+        <Route path="/news/:id" component={ActiveNewsPage} />
         <Route path="/">
-          <Background />
-          <News />
+          <MainPage />
         </Route>
       </Switch>
     </div>
