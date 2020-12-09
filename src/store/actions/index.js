@@ -35,15 +35,3 @@ export const setLoading = (isLoading) => ({
   type: SET_LOADING,
   payload: isLoading,
 });
-
-export const SET_ACTIVE_NEWS = 'SET_ACTIVE_NEWS';
-export const setActiveNews = (news) => ({
-  type: SET_ACTIVE_NEWS,
-  payload: news,
-});
-
-export const RESET_ACTIVE_NEWS = 'RESET_ACTIVE_NEWS';
-export const resetActiveNews = () => ({
-  type: RESET_ACTIVE_NEWS,
-  payload: null,
-});

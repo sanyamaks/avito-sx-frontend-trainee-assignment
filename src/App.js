@@ -11,9 +11,7 @@ const App = () => {
     <div className="App">
       <Header />
       <Switch>
-        <Route path="/active-news">
-          <ActiveNews />
-        </Route>
+        <Route path="/news/:id" component={ActiveNews} />
         <Route path="/">
           <Background />
           <News />

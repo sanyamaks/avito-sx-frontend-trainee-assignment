@@ -8,16 +8,12 @@ const News = (props) => {
   const { news, showNews } = props;
   const [count, setCount] = useState(0);
 
-  const tick = () => {
-    setCount(count + 1);
-  };
-
   useEffect(() => {
     showNews();
-    const interval = setInterval(tick, 1000 * 60);
-
+    const interval = setInterval(() => setCount(count + 1), 1000 * 60);
     return () => clearInterval(interval);
   }, [count]);
+
   return (
     <div className="news">
       {news.map((newsItem) => (

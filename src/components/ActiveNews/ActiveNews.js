@@ -14,12 +14,11 @@ const ActiveNews = (props) => {
     }
   }, []);
 
-
   if (!activeNews) {
     return null;
   }
   return (
-    <div className="active-news">
+    <section className="active-news">
       <p className="active-news__author">{activeNews.by}</p>
       <p className="active-news__title">{activeNews.title}</p>
       <a href={activeNews.url} target="_black" className="active-news__url">
@@ -34,12 +33,15 @@ const ActiveNews = (props) => {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { activeNews: state.activeNews };
+const mapStateToProps = (state, props) => {
+  const { id } = props.match.params;
+  return {
+    activeNews: state.news.find((item) => item.id === parseInt(id)),
+  };
 };
 
 export default connect(mapStateToProps)(ActiveNews);

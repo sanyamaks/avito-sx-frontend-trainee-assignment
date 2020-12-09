@@ -12,7 +12,7 @@ const NewsItem = (props) => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push('/active-news');
+    history.push(`/news/${newsItem.id}`);
     openActiveNews(newsItem);
   };
 
