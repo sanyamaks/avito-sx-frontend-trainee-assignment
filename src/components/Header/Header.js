@@ -5,15 +5,14 @@ import { ReactComponent as IconBack } from '../../assets/icons/arrow-pointing-to
 import { ReactComponent as IconLoader } from '../../assets/icons/update-arrows.svg';
 import { connect } from 'react-redux';
 import cn from 'classnames';
-import { requestNews, resetActiveNews } from '../../store/actions';
+import { requestNews } from '../../store/actions';
 
 const Header = (props) => {
-  const { isLoading, showNews, comeBack } = props;
+  const { isLoading, showNews } = props;
   const history = useHistory();
 
   const handleClick = () => {
     history.push('/');
-    comeBack();
   };
 
   return (
@@ -42,9 +41,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showNews: () => {
       dispatch(requestNews());
-    },
-    comeBack: () => {
-      dispatch(resetActiveNews());
     },
   };
 };
