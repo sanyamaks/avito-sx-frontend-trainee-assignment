@@ -1,4 +1,5 @@
 import { getAllNewsId } from '../../api/NewsAPI';
+import { convertTime } from '../../utils/timeConverter';
 
 export const ADD_NEWS = 'ADD_NEWS';
 export const addNews = (news) => ({
@@ -16,14 +17,7 @@ export const requestNews = () => {
         })
       )
       .then((news) => {
-        console.log(news);
-        return news.map((item) => {
-          const date = new Date(item.time * 1000);
-          item.time = `${date.getDate()}.${
-            date.getMonth() + 1
-          }.${date.getFullYear()}`;
-          return item;
-        });
+        return news.map((item) => convertTime(item));
       })
       .then((news) => dispatch(addNews(news)))
       .finally(() => dispatch(setLoading(false)));
