@@ -20,7 +20,7 @@
   font-weight: 400;
 }
 
-.active-news__url {
+.active-news__url {word-wrap: break-word;
   margin: 0;
   font-size: 23px;
   line-height: 30px;

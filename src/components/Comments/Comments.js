@@ -6,6 +6,7 @@ import { requestComments } from '../../store/actions';
 
 const Comments = (props) => {
   const { comments, ids, showComments } = props;
+
   useEffect(() => {
     showComments(ids);
   }, []);

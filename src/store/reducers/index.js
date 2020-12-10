@@ -1,4 +1,9 @@
-import { ADD_NEWS, SET_LOADING, ADD_COMMENTS } from '../actions';
+import {
+  ADD_NEWS,
+  SET_LOADING,
+  ADD_COMMENTS,
+  ADD_CHILD_COMMENTS,
+} from '../actions';
 
 const initialState = {
   isLoading: false,
@@ -22,6 +27,18 @@ export const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: [...action.payload],
+      };
+    case ADD_CHILD_COMMENTS:
+      return {
+        ...state,
+        comments: [
+          ...state.comments.map((item) => {
+            if (item.id === action.payload.parentId) {
+              item.childComments = action.payload.comments;
+            }
+            return {...item};
+          }),
+        ],
       };
     default:
       return state;

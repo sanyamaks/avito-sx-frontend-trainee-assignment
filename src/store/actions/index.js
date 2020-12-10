@@ -49,8 +49,77 @@ export const requestComments = (ids) => {
         })
       )
       .then((comments) => {
-        return comments.map((item) => convertTime(item));
+        return comments.map((comment) => {
+          comment.orderOfPriority = 0;
+          return convertTime(comment);
+        });
       })
       .then((comments) => dispatch(addComments(comments)));
+  };
+};
+
+export const ADD_CHILD_COMMENTS = 'ADD_CHILD_COMMENTS';
+export const addChildComments = (parentId, comments) => ({
+  type: ADD_CHILD_COMMENTS,
+  payload: { parentId, comments },
+});
+
+const requestChildComments1 = async (
+  parentId,
+  orderOfPriority,
+  childCommentsIds
+) => {
+  const comments = await getCommentsById(childCommentsIds);
+  comments.sort((a, b) => {
+    return b.time - a.time;
+  });
+
+  let fullComments = Promise.all(
+    comments.map(async (comment) => {
+      comment.orderOfPriority = orderOfPriority + 1;
+      if (comment.hasOwnProperty('kids') && comment.kids.length > 0) {
+        comment.childComments = await requestChildComments1(
+          comment.id,
+          comment.orderOfPriority,
+          comment.kids
+        );
+      }
+      return convertTime(comment);
+    })
+  );
+  return fullComments;
+
+  // return await getCommentsById(childCommentsIds)
+  //   .then((comments) =>
+  //     comments.sort((a, b) => {
+  //       return b.time - a.time;
+  //     })
+  //   )
+  //   .then((comments) =>
+  //     comments.map(async (comment) => {
+  //       if (comment.hasOwnProperty('kids') && comment.kids.length > 0) {
+  //         comment.childComments = await requestChildComments1(
+  //           comment.id,
+  //           comment.orderOfPriority,
+  //           comment.kids
+  //         );
+  //       }
+  //       comment.orderOfPriority = orderOfPriority + 1;
+  //       return convertTime(comment);
+  //     })
+  //   );
+};
+
+export const requestChildComments = (
+  parentId,
+  orderOfPriority,
+  childCommentsIds
+) => {
+  return async (dispatch) => {
+    await requestChildComments1(
+      parentId,
+      orderOfPriority,
+      childCommentsIds
+    ).then((comments) => dispatch(addChildComments(parentId, comments)));
   };
 };
