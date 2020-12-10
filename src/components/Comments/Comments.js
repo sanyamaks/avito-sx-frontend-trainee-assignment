@@ -1,33 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import './Comments.css';
 import Comment from '../Comment/Comment';
+import { requestComments } from '../../store/actions';
 
-const comments = [
-  {
-    by: 'norvig',
-    id: 2921983,
-    kids: [2922097, 2922429, 2924562, 2922709, 2922573, 2922140, 2922141],
-    parent: 2921506,
-    text:
-      "Aw shucks, guys ... you make me blush with your compliments. Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
-    time: 1314211127,
-    type: 'comment',
-    orderOfPriority: 1,
-  },
-  {
-    by: 'norvig',
-    id: 2921984,
-    kids: [2922097, 2922429, 2924562, 2922709, 2922573, 2922140, 2922141],
-    parent: 2921506,
-    text:
-      "Aw shucks, guys ... you make me blush with your compliments. Tell you what, Ill make a deal: I'll keep writing if you keep reading. K?",
-    time: 1314211127,
-    type: 'comment',
-    orderOfPriority: 1,
-  },
-];
+const Comments = (props) => {
+  const { comments, ids, showComments } = props;
+  useEffect(() => {
+    showComments(ids);
+  }, []);
 
-const Comments = () => {
   return (
     <section className="comments">
       {comments.map((comment) => (
@@ -37,4 +19,21 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+const mapStateToProps = (state, props) => {
+  const { id } = props.match.params;
+  const ids = state.news.find((item) => item.id === parseInt(id)).kids;
+  return {
+    ids: ids,
+    comments: state.comments,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showComments: (ids) => {
+      dispatch(requestComments(ids));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

@@ -1,4 +1,8 @@
-import { getAllNewsId } from '../../api/NewsAPI';
+import {
+  getAllNewsId,
+  getNewsItemById,
+  getCommentsById,
+} from '../../api/NewsAPI';
 import { convertTime } from '../../utils/timeConverter';
 
 export const ADD_NEWS = 'ADD_NEWS';
@@ -29,3 +33,24 @@ export const setLoading = (isLoading) => ({
   type: SET_LOADING,
   payload: isLoading,
 });
+
+export const ADD_COMMENTS = 'ADD_COMMENTS';
+export const addComments = (comments) => ({
+  type: ADD_COMMENTS,
+  payload: comments,
+});
+
+export const requestComments = (ids) => {
+  return (dispatch) => {
+    getCommentsById(ids)
+      .then((comments) =>
+        comments.sort((a, b) => {
+          return b.time - a.time;
+        })
+      )
+      .then((comments) => {
+        return comments.map((item) => convertTime(item));
+      })
+      .then((comments) => dispatch(addComments(comments)));
+  };
+};

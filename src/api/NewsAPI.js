@@ -15,3 +15,14 @@ export const getNewsItemById = async (id) => {
   let newsItem = await res.json();
   return newsItem;
 };
+
+export const getCommentById = async (id) => {
+  let res = await fetch(baseUrl + '/item/' + id + fileExtension);
+  let comment = await res.json();
+  return comment;
+};
+
+export const getCommentsById = async (ids) => {
+  let comments = Promise.all(ids.map((item) => getCommentById(item)));
+  return comments;
+};

@@ -1,9 +1,9 @@
-import { ADD_NEWS, SET_LOADING } from '../actions';
+import { ADD_NEWS, SET_LOADING, ADD_COMMENTS } from '../actions';
 
 const initialState = {
   isLoading: false,
   news: [],
-  activeNews: null,
+  comments: [],
 };
 
 export const newsReducer = (state = initialState, action) => {
@@ -17,6 +17,11 @@ export const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    case ADD_COMMENTS:
+      return {
+        ...state,
+        comments: [...action.payload],
       };
     default:
       return state;
