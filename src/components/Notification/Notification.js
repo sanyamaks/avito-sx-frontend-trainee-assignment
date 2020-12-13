@@ -11,10 +11,13 @@ const Notification = (props) => {
     if (statusError === 404) {
       setText('Not Found');
     }
+  }, [statusError]);
+
+  useEffect(() => {
     return () => {
       resetError();
     };
-  }, [statusError]);
+  }, []);
 
   if (!statusError) {
     return null;
@@ -33,10 +36,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
     resetError: () => {
-      resetError();
+      dispatch(resetError());
     },
   };
 };
