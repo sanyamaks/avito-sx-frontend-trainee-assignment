@@ -1,0 +1,60 @@
+@keyframes icon-rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+  height: 53px;
+  display: grid;
+  grid-template-columns: 50px auto 50px;
+  align-items: center;
+}
+
+.header__button-icon {
+  outline: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header__icon {
+  fill: #289cde;
+  height: 20px;
+  width: 20px;
+}
+
+.header__icon_back {
+  transform: rotate(180deg);
+}
+
+.header__icon_loader {
+  animation: icon-rotate 1s linear infinite;
+}
+
+.header__text {
+  margin: 0 0 0 20px;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 800;
+}
+
+.header__subtitle {
+  margin: 0;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 400;
+  color: rgb(91, 112, 131);
+}
