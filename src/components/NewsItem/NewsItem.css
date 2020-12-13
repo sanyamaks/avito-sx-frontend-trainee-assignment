@@ -5,10 +5,6 @@
   padding: 10px;
 }
 
-.news-item:hover {
-  background-color: rgba(0, 0, 0, 0.08);
-}
-
 .news-item__author {
   margin: 0;
   font-size: 13px;
@@ -19,6 +15,7 @@
 
 .news-item__wrapper {
   display: flex;
+  justify-content: space-between;
 }
 
 .news-item__title {
@@ -29,7 +26,11 @@
 }
 
 .news-item__time {
-  margin: 0 0 0 10px;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 120px;
+  min-width: 120px;
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;
@@ -53,4 +54,12 @@
   line-height: 17px;
   font-weight: 400;
   color: rgb(91, 112, 131);
+}
+
+@media screen and (max-width: 768px) {
+  .news-item__time {
+    text-align: right;
+    width: 80px;
+    min-width: 80px;
+  }
 }
