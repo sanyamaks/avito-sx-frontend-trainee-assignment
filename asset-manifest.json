@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/avito-sx-frontend-trainee-assignment/static/css/main.882b8d6d.chunk.css",
-    "main.js": "/avito-sx-frontend-trainee-assignment/static/js/main.4799d9d0.chunk.js",
-    "main.js.map": "/avito-sx-frontend-trainee-assignment/static/js/main.4799d9d0.chunk.js.map",
+    "main.css": "/avito-sx-frontend-trainee-assignment/static/css/main.5ac9ad00.chunk.css",
+    "main.js": "/avito-sx-frontend-trainee-assignment/static/js/main.32a44bae.chunk.js",
+    "main.js.map": "/avito-sx-frontend-trainee-assignment/static/js/main.32a44bae.chunk.js.map",
     "runtime-main.js": "/avito-sx-frontend-trainee-assignment/static/js/runtime-main.4e39447b.js",
     "runtime-main.js.map": "/avito-sx-frontend-trainee-assignment/static/js/runtime-main.4e39447b.js.map",
-    "static/js/2.2152c30d.chunk.js": "/avito-sx-frontend-trainee-assignment/static/js/2.2152c30d.chunk.js",
-    "static/js/2.2152c30d.chunk.js.map": "/avito-sx-frontend-trainee-assignment/static/js/2.2152c30d.chunk.js.map",
+    "static/js/2.a1945cfd.chunk.js": "/avito-sx-frontend-trainee-assignment/static/js/2.a1945cfd.chunk.js",
+    "static/js/2.a1945cfd.chunk.js.map": "/avito-sx-frontend-trainee-assignment/static/js/2.a1945cfd.chunk.js.map",
     "index.html": "/avito-sx-frontend-trainee-assignment/index.html",
-    "static/css/main.882b8d6d.chunk.css.map": "/avito-sx-frontend-trainee-assignment/static/css/main.882b8d6d.chunk.css.map",
-    "static/js/2.2152c30d.chunk.js.LICENSE.txt": "/avito-sx-frontend-trainee-assignment/static/js/2.2152c30d.chunk.js.LICENSE.txt",
+    "static/css/main.5ac9ad00.chunk.css.map": "/avito-sx-frontend-trainee-assignment/static/css/main.5ac9ad00.chunk.css.map",
+    "static/js/2.a1945cfd.chunk.js.LICENSE.txt": "/avito-sx-frontend-trainee-assignment/static/js/2.a1945cfd.chunk.js.LICENSE.txt",
     "static/media/arrow-pointing-to-right.6e7351c3.svg": "/avito-sx-frontend-trainee-assignment/static/media/arrow-pointing-to-right.6e7351c3.svg",
     "static/media/comments-icon.7854ba28.svg": "/avito-sx-frontend-trainee-assignment/static/media/comments-icon.7854ba28.svg",
     "static/media/star.9ceedc95.svg": "/avito-sx-frontend-trainee-assignment/static/media/star.9ceedc95.svg",
@@ -17,8 +17,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.4e39447b.js",
-    "static/js/2.2152c30d.chunk.js",
-    "static/css/main.882b8d6d.chunk.css",
-    "static/js/main.4799d9d0.chunk.js"
+    "static/js/2.a1945cfd.chunk.js",
+    "static/css/main.5ac9ad00.chunk.css",
+    "static/js/main.32a44bae.chunk.js"
   ]
 }
