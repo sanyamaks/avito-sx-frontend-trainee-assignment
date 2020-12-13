@@ -3,7 +3,7 @@ import { configNewsApi } from './configNewsApi';
 const { baseUrl, fileExtension } = configNewsApi;
 
 export const getAllNewsId = async () => {
-  let res = await fetch(baseUrl + '/topstories' + fileExtension);
+  let res = await fetch(baseUrl + '/newstories' + fileExtension);
   let newsIds = await res.json();
   let newsIds100 = newsIds.splice(0, 100);
   let news = Promise.all(newsIds100.map((item) => getNewsItemById(item)));
