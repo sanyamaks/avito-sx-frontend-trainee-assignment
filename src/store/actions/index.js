@@ -27,6 +27,51 @@ export const requestNews = () => {
       .finally(() => dispatch(setLoading(false)));
   };
 };
+export const ADD_ACTIVE_NEWS = 'ADD_ACTIVE_NEWS';
+export const addActiveNews = (activeNews) => ({
+  type: ADD_ACTIVE_NEWS,
+  payload: activeNews,
+});
+
+export const REMOVE_ACTIVE_NEWS = 'REMOVE_ACTIVE_NEWS';
+export const removeActiveNews = () => ({
+  type: REMOVE_ACTIVE_NEWS,
+  payload: null,
+});
+
+export const findActiveNewsById = (id) => {
+  return (dispatch, getState) => {
+    const activeNews = getState().news.find(
+      (newsItem) => newsItem.id === parseInt(id)
+    );
+    dispatch(addActiveNews(activeNews));
+  };
+};
+
+export const requestActiveNews = (id) => {
+  return (dispatch) => {
+    dispatch(setLoading(true));
+    getNewsItemById(id)
+      .then((activeNews) => convertTime(activeNews))
+      .then((activeNews) => dispatch(addActiveNews(activeNews)))
+      .catch((err) => {
+        dispatch(setError(err.status));
+      })
+      .finally(() => dispatch(setLoading(false)));
+  };
+};
+
+export const SET_ERROR = 'SET_ERROR';
+export const setError = (status) => ({
+  type: SET_ERROR,
+  payload: status,
+});
+
+export const RESET_ERROR = 'RESET_ERROR';
+export const resetError = () => ({
+  type: RESET_ERROR,
+  payload: null,
+});
 
 export const SET_LOADING = 'SET_LOADING';
 export const setLoading = (isLoading) => ({

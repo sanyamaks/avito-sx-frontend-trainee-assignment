@@ -8,14 +8,13 @@ const Comments = (props) => {
   const { comments, childCommentIds, showComments, resetComments } = props;
 
   useEffect(() => {
-    if (!childCommentIds) {
-      return null;
+    if (!!childCommentIds && childCommentIds.length !== 0) {
+      showComments(childCommentIds);
     }
-    showComments(childCommentIds);
     return () => {
       resetComments();
     };
-  }, []);
+  }, [childCommentIds]);
 
   return (
     <section className="comments">
@@ -29,10 +28,11 @@ const Comments = (props) => {
   );
 };
 
-const mapStateToProps = (state, props) => {
-  const { id } = props.match.params;
-  const childCommentIds = state.news.find((item) => item.id === parseInt(id))
-    .kids;
+const mapStateToProps = (state) => {
+  const childCommentIds = (!!state.activeNews
+    && state.activeNews.hasOwnProperty('kids'))
+      ? state.activeNews.kids
+    : null;
   return {
     childCommentIds: childCommentIds,
     comments: state.comments,

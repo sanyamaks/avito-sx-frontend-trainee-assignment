@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './ActiveNews.css';
 import { ReactComponent as IconStar } from '../../assets/icons/comments-icon.svg';
+import {
+  removeActiveNews,
+  requestActiveNews,
+} from '../../store/actions';
 
 const ActiveNews = (props) => {
-  const { activeNews } = props;
-  const history = useHistory();
+  const { id, activeNews, showActiveNews, resetActiveNews } = props;
 
   useEffect(() => {
     if (!activeNews) {
-      history.push('/');
+      showActiveNews(id);
     }
+    return () => {
+      resetActiveNews();
+    };
   }, []);
 
   if (!activeNews) {
@@ -40,8 +45,20 @@ const ActiveNews = (props) => {
 const mapStateToProps = (state, props) => {
   const { id } = props.match.params;
   return {
-    activeNews: state.news.find((item) => item.id === parseInt(id)),
+    id: id,
+    activeNews: state.activeNews,
   };
 };
 
-export default connect(mapStateToProps)(ActiveNews);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showActiveNews: (id) => {
+      dispatch(requestActiveNews(id));
+    },
+    resetActiveNews: () => {
+      dispatch(removeActiveNews());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveNews);

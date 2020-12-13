@@ -11,9 +11,16 @@ export const getAllNewsId = async () => {
 };
 
 export const getNewsItemById = async (id) => {
-  let res = await fetch(baseUrl + '/item/' + id + fileExtension);
-  let newsItem = await res.json();
-  return newsItem;
+  try {
+    let res = await fetch(baseUrl + '/item/' + id + fileExtension);
+    let newsItem = await res.json();
+    if (!newsItem) {
+      return Promise.reject({ status: 404 });
+    }
+    return newsItem;
+  } catch (err) {
+    return err;
+  }
 };
 
 export const getCommentById = async (id) => {
