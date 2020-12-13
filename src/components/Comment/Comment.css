@@ -17,11 +17,17 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  width: 100%;
   border-bottom: 1px solid rgb(235, 238, 240);
 }
 
-.comment__wrapper:hover {
+.comment__wrapper_hover:hover {
   background-color: rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.comment__wrapper_main {
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .comment__headline {
@@ -44,7 +50,18 @@
 }
 
 .comment__text {
+  margin: 0 0 0 10px;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.comment__show-more {
   margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  color: #289cde;
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;

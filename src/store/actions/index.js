@@ -42,6 +42,7 @@ export const addComments = (comments) => ({
 
 export const requestComments = (ids) => {
   return (dispatch) => {
+    dispatch(setLoading(true));
     getCommentsById(ids)
       .then((comments) =>
         comments.sort((a, b) => {
@@ -54,7 +55,8 @@ export const requestComments = (ids) => {
           return convertTime(comment);
         });
       })
-      .then((comments) => dispatch(addComments(comments)));
+      .then((comments) => dispatch(addComments(comments)))
+      .finally(() => dispatch(setLoading(false)));
   };
 };
 
@@ -64,7 +66,13 @@ export const addChildComments = (parentId, comments) => ({
   payload: { parentId, comments },
 });
 
-const requestChildComments1 = async (
+export const RESET_ALL_COMMENTS = 'RESET_ALL_COMMENTS';
+export const resetAllComments = () => ({
+  type: RESET_ALL_COMMENTS,
+  payload: [],
+});
+
+const requestEveryChildCommentsGroup = async (
   parentId,
   orderOfPriority,
   childCommentsIds
@@ -78,7 +86,7 @@ const requestChildComments1 = async (
     comments.map(async (comment) => {
       comment.orderOfPriority = orderOfPriority + 1;
       if (comment.hasOwnProperty('kids') && comment.kids.length > 0) {
-        comment.childComments = await requestChildComments1(
+        comment.childComments = await requestEveryChildCommentsGroup(
           comment.id,
           comment.orderOfPriority,
           comment.kids
@@ -88,38 +96,21 @@ const requestChildComments1 = async (
     })
   );
   return fullComments;
-
-  // return await getCommentsById(childCommentsIds)
-  //   .then((comments) =>
-  //     comments.sort((a, b) => {
-  //       return b.time - a.time;
-  //     })
-  //   )
-  //   .then((comments) =>
-  //     comments.map(async (comment) => {
-  //       if (comment.hasOwnProperty('kids') && comment.kids.length > 0) {
-  //         comment.childComments = await requestChildComments1(
-  //           comment.id,
-  //           comment.orderOfPriority,
-  //           comment.kids
-  //         );
-  //       }
-  //       comment.orderOfPriority = orderOfPriority + 1;
-  //       return convertTime(comment);
-  //     })
-  //   );
 };
 
-export const requestChildComments = (
+export const requestAllChildComments = (
   parentId,
   orderOfPriority,
   childCommentsIds
 ) => {
   return async (dispatch) => {
-    await requestChildComments1(
+    dispatch(setLoading(true));
+    await requestEveryChildCommentsGroup(
       parentId,
       orderOfPriority,
       childCommentsIds
-    ).then((comments) => dispatch(addChildComments(parentId, comments)));
+    )
+      .then((comments) => dispatch(addChildComments(parentId, comments)))
+      .finally(() => dispatch(setLoading(false)));
   };
 };

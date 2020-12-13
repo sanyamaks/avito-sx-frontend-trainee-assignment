@@ -3,6 +3,7 @@ import {
   SET_LOADING,
   ADD_COMMENTS,
   ADD_CHILD_COMMENTS,
+  RESET_ALL_COMMENTS,
 } from '../actions';
 
 const initialState = {
@@ -36,9 +37,14 @@ export const newsReducer = (state = initialState, action) => {
             if (item.id === action.payload.parentId) {
               item.childComments = action.payload.comments;
             }
-            return {...item};
+            return { ...item };
           }),
         ],
+      };
+    case RESET_ALL_COMMENTS:
+      return {
+        ...state,
+        comments: [],
       };
     default:
       return state;
