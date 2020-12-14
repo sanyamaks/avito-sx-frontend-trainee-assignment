@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import './ActiveNews.css';
 import { ReactComponent as IconStar } from '../../assets/icons/comments-icon.svg';
-import {
-  removeActiveNews,
-  requestActiveNews,
-} from '../../store/actions';
+import { removeActiveNews, requestActiveNews } from '../../store/actions';
 
 const ActiveNews = (props) => {
   const { id, activeNews, showActiveNews, resetActiveNews } = props;
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!activeNews) {
-      showActiveNews(id);
-    }
+    showActiveNews(id);
+    const interval = setInterval(() => setCount(count + 1), 1000 * 60);
+    return () => clearInterval(interval);
+  }, [count]);
+
+  useEffect(() => {
     return () => {
       resetActiveNews();
     };

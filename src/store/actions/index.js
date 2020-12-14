@@ -39,15 +39,6 @@ export const removeActiveNews = () => ({
   payload: null,
 });
 
-export const findActiveNewsById = (id) => {
-  return (dispatch, getState) => {
-    const activeNews = getState().news.find(
-      (newsItem) => newsItem.id === parseInt(id)
-    );
-    dispatch(addActiveNews(activeNews));
-  };
-};
-
 export const requestActiveNews = (id) => {
   return (dispatch) => {
     dispatch(setLoading(true));
